@@ -13,7 +13,6 @@ def help():
     print("   -of  | output file (sets exact file name)")
     print("        | Usage: ruskko file.rsko -o index.html")
     print("        | Has no automatic file extension set")
-    print("        |\n")
 
 #---------------------------------------------------------#
 #  Export files                                           #
@@ -46,16 +45,14 @@ args_len = len(arguments)
 print("Total Arguments: ", args_len)
 print("Arguments Seen: ", arguments)
 
-if (arguments[0] == "-help"):
-    help()
-else:
-    if (not arguments[0].endswith(".rsko")):
-        incorrectFile(arguments[0])
-    else:
-        pass
-
 if (args_len == 1):
-    pass
+    if (arguments[0] == "-help"):
+        help()
+    else:
+        if (not arguments[0].endswith(".rsko")):
+            incorrectFile(arguments[0])
+        else:
+            pass
 elif (args_len == 2):
     incorrectUsage("Unused Option")
 elif (args_len == 3):
