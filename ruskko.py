@@ -45,6 +45,7 @@ args_len = len(arguments)
 print("Total Arguments: ", args_len)
 print("Arguments Seen: ", arguments)
 
+# Check Argument Lengths, and run code accordingly
 if (args_len == 1):
     if (arguments[0] == "-help"):
         help()
@@ -56,7 +57,10 @@ if (args_len == 1):
 elif (args_len == 2):
     incorrectUsage("Unused Option")
 elif (args_len == 3):
-    pass
+    if (arguments[2] == "-o"):
+        pass
+    elif(arguments[2] == "-of"):
+        pass
 elif (args_len == 0):
     incorrectUsage("No File Specified")
 else:
