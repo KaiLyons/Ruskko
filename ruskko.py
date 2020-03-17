@@ -17,6 +17,7 @@ def help():
     print("        | Usage: ruskko file.rsko -o index.html")
     print("        | Has no automatic file extension set")
     print("")
+    exit()
 
 def outputName(name):
     global output 
@@ -75,11 +76,17 @@ elif (args_len == 3):
     fileInput(arguments[0])
     if (arguments[1] == "-o"):        
         outputName(arguments[2])
-        print("File Output: ", output)
     elif(arguments[1] == "-of"):
         outputFile(arguments[2])
-        print("File Output: ", output)
 elif (args_len == 0):
     incorrectUsage("No File Specified")
 else:
     incorrectUsage("Too many arguments! Limit = 3")
+
+#---------------------------------------------------------#
+#  Reading the file                                       #
+#---------------------------------------------------------#
+
+file = arguments[0]
+print("File Input: ", file)
+print("File Output: ", output)
