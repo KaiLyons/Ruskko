@@ -1,4 +1,7 @@
 import sys, re
+
+output = "index.html" # index.html is default
+
 #---------------------------------------------------------#
 #  CLI Options for User                                   #
 #---------------------------------------------------------#
@@ -13,6 +16,15 @@ def help():
     print("   -of  | output file (sets exact file name)")
     print("        | Usage: ruskko file.rsko -o index.html")
     print("        | Has no automatic file extension set")
+    print("")
+
+def outputName(name):
+    global output 
+    output = name + ".html"   
+
+def outputFile(new_file):
+    global output 
+    output = new_file
 
 #---------------------------------------------------------#
 #  Export files                                           #
@@ -57,10 +69,12 @@ if (args_len == 1):
 elif (args_len == 2):
     incorrectUsage("Unused Option")
 elif (args_len == 3):
-    if (arguments[2] == "-o"):
-        pass
-    elif(arguments[2] == "-of"):
-        pass
+    if (arguments[1] == "-o"):        
+        outputName(arguments[2])
+        print("File Output: ", output)
+    elif(arguments[1] == "-of"):
+        outputFile(arguments[2])
+        print("File Output: ", output)
 elif (args_len == 0):
     incorrectUsage("No File Specified")
 else:
