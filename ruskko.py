@@ -93,4 +93,6 @@ print("File Output: ", output)
 
 run = open(file, 'r')
 for line in run:
-    print(line)    
+    line = line.rstrip()
+    line = line.lstrip()
+    print(line)
