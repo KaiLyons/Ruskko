@@ -90,3 +90,9 @@ else:
 file = arguments[0]
 print("File Input: ", file)
 print("File Output: ", output)
+
+run = open(file, 'r')
+
+with open(file, 'r') as run:
+    line = run.readlines()
+    print(line[:])
