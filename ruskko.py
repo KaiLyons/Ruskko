@@ -26,6 +26,15 @@ def outputFile(new_file):
     global output 
     output = new_file
 
+def fileInput(file):
+    if (arguments[0] == "-help"):
+        help()
+    else:
+        if (not arguments[0].endswith(".rsko")):
+            incorrectFile(arguments[0])
+        else:
+            pass
+
 #---------------------------------------------------------#
 #  Export files                                           #
 #---------------------------------------------------------#
@@ -59,16 +68,11 @@ print("Arguments Seen: ", arguments)
 
 # Check Argument Lengths, and run code accordingly
 if (args_len == 1):
-    if (arguments[0] == "-help"):
-        help()
-    else:
-        if (not arguments[0].endswith(".rsko")):
-            incorrectFile(arguments[0])
-        else:
-            pass
+    fileInput(arguments[0])
 elif (args_len == 2):
     incorrectUsage("Unused Option")
 elif (args_len == 3):
+    fileInput(arguments[0])
     if (arguments[1] == "-o"):        
         outputName(arguments[2])
         print("File Output: ", output)
