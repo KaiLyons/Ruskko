@@ -14,11 +14,30 @@ def exportFile(file_contents, output):
 #---------------------------------------------------------#
 #  Define Ruskko built tags                               #
 #---------------------------------------------------------#
+
+# <.someClass> </.>
+def classTag(line):
+    pass
+
+# <#some-id> </#>
+def idTag(line):
+    tagIDStart = "^(<#.*?>)$"
+    tagIDEnd = "</#>"
+    string = line.split("<#")[1].split(">")[0]
+    tagIDReplace = "<span id=\"" + string + "\">"
+    tagIDEnd = "</span>"
+    print(line)
+
 def parser(file, output):
     # Remove comments
     for i in file:
         if (i.startswith('//')):
             file.remove(i)
+        if (re.search("<#.*>", i)):
+            print("Found ID tag")
+            idTag(i)
+
+
     
     exportFile(file, output)
 
