@@ -23,10 +23,12 @@ def classTag(line):
 def idTag(line):
     tagIDStart = "^(<#.*?>)$"
     tagIDEnd = "</#>"
-    string = line.split("<#")[1].split(">")[0]
-    tagIDReplace = "<span id=\"" + string + "\">"
-    tagIDEnd = "</span>"
-    print(line)
+    tagIDTitle = line.split("<#")[1].split(">")[0]
+    tagIDString = line.split(">")[1].split("<")[0]
+    tagIDReplace = "<span id=\"" + tagIDTitle + "\">"
+    tagIDEndReplace = "</span>"
+    line = tagIDReplace + tagIDString + tagIDEndReplace
+    return line
 
 def parser(file, output):
     # Remove comments
@@ -34,11 +36,11 @@ def parser(file, output):
         if (i.startswith('//')):
             file.remove(i)
         if (re.search("<#.*>", i)):
-            print("Found ID tag")
-            idTag(i)
+            line = file.index(i)
+            file[line] = idTag(i)
+            print(i)
 
-
-    
+    print(file)
     exportFile(file, output)
 
 
