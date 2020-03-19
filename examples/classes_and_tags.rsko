@@ -1,0 +1,13 @@
+// Simple Website
+<head>
+    <title>Test Site</title>
+</head>
+// Second comment test
+<body>
+    <p> 
+        this is my 
+        <#myID withID2>First ID tag example</#>
+        and this is my
+        <.myClass withClass2>First Class tag example!</.>
+    </p>
+</body>
