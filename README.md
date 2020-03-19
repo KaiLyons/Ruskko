@@ -1,4 +1,4 @@
-# Ruskko
+![banner](https://raw.githubusercontent.com/KaiLyons/Ruskko/master/images/banner.png)
 HTML for lazy people.
 
 ## What is Ruskko?
