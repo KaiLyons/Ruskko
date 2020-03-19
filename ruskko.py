@@ -17,12 +17,15 @@ def exportFile(file_contents, output):
 
 # <.someClass> </.>
 def classTag(line):
-    pass
+    classTitle = line.split("<.")[1].split(">")[0]
+    classString = line.split(">")[1].split("<")[0]
+    classReplace = "<span class=\"" + classTitle + "\">"
+    classEndReplace = "</span>"
+    line = classReplace + classString + classEndReplace
+    return line
 
 # <#some-id> </#>
 def idTag(line):
-    tagIDStart = "^(<#.*?>)$"
-    tagIDEnd = "</#>"
     tagIDTitle = line.split("<#")[1].split(">")[0]
     tagIDString = line.split(">")[1].split("<")[0]
     tagIDReplace = "<span id=\"" + tagIDTitle + "\">"
@@ -38,7 +41,10 @@ def parser(file, output):
         if (re.search("<#.*>", i)):
             line = file.index(i)
             file[line] = idTag(i)
-            print(i)
+        if (re.search("<\..*>", i)):
+            line = file.index(i)
+            file[line] = classTag(i)
+        
 
     print(file)
     exportFile(file, output)
