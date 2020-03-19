@@ -6,7 +6,7 @@ output = "index.html" # index.html is default
 #---------------------------------------------------------#
 
 def parser(file):
-    pass
+    print(file)
 
 #---------------------------------------------------------#
 #  Reading the file                                       #
@@ -25,7 +25,7 @@ def readFile():
     
     all_lines = list(filter(None, all_lines))
     
-    print(all_lines)
+    parser(all_lines)
         
 
 #---------------------------------------------------------#
