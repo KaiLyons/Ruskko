@@ -2,16 +2,23 @@ import sys, re
 
 output = "index.html" # index.html is default
 #---------------------------------------------------------#
+#  Export files                                           #
+#---------------------------------------------------------#
+def exportFile(file_contents):
+    export = open(output, "w")
+    for i in file_contents:
+        export.write(i + "\n")
+
+#---------------------------------------------------------#
 #  Define Ruskko built tags                               #
 #---------------------------------------------------------#
-
 def parser(file):
     # Remove comments
     for i in file:
         if (i.startswith('//')):
             file.remove(i)
     
-    print(file)
+    exportFile(file)
 
 
 #---------------------------------------------------------#
@@ -67,12 +74,6 @@ def fileInput(file):
             incorrectFile(arguments[0])
         else:
             readFile()
-
-#---------------------------------------------------------#
-#  Export files                                           #
-#---------------------------------------------------------#
-
-
 
 #---------------------------------------------------------#
 #  Get/Set arguments such as file and CLI for future use  #
