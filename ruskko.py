@@ -3,6 +3,20 @@ import sys, re
 output = "index.html" # index.html is default
 
 #---------------------------------------------------------#
+#  Reading the file                                       #
+#---------------------------------------------------------#
+def readFile():
+    file = arguments[0]
+    print("File Input: ", file)
+    print("File Output: ", output)
+
+    run = open(file, 'r')
+    for line in run:
+        line = line.rstrip()
+        line = line.lstrip()
+        print(line)
+
+#---------------------------------------------------------#
 #  CLI Options for User                                   #
 #---------------------------------------------------------#
 def help():
@@ -34,7 +48,7 @@ def fileInput(file):
         if (not arguments[0].endswith(".rsko")):
             incorrectFile(arguments[0])
         else:
-            pass
+            readFile()
 
 #---------------------------------------------------------#
 #  Export files                                           #
@@ -76,23 +90,11 @@ elif (args_len == 3):
     fileInput(arguments[0])
     if (arguments[1] == "-o"):        
         outputName(arguments[2])
+        readFile()
     elif(arguments[1] == "-of"):
         outputFile(arguments[2])
+        readFile()
 elif (args_len == 0):
     incorrectUsage("No File Specified")
 else:
     incorrectUsage("Too many arguments! Limit = 3")
-
-#---------------------------------------------------------#
-#  Reading the file                                       #
-#---------------------------------------------------------#
-
-file = arguments[0]
-print("File Input: ", file)
-print("File Output: ", output)
-
-run = open(file, 'r')
-for line in run:
-    line = line.rstrip()
-    line = line.lstrip()
-    print(line)
