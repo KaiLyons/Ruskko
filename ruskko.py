@@ -6,7 +6,13 @@ output = "index.html" # index.html is default
 #---------------------------------------------------------#
 
 def parser(file):
+    # Remove comments
+    for i in file:
+        if (i.startswith('//')):
+            file.remove(i)
+    
     print(file)
+
 
 #---------------------------------------------------------#
 #  Reading the file                                       #
