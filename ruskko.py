@@ -1,6 +1,12 @@
 import sys, re
 
 output = "index.html" # index.html is default
+#---------------------------------------------------------#
+#  Define Ruskko built tags                               #
+#---------------------------------------------------------#
+
+def parser(file):
+    pass
 
 #---------------------------------------------------------#
 #  Reading the file                                       #
@@ -9,12 +15,18 @@ def readFile():
     file = arguments[0]
     print("File Input: ", file)
     print("File Output: ", output)
+    all_lines = []
 
     run = open(file, 'r')
     for line in run:
         line = line.rstrip()
         line = line.lstrip()
-        print(line)
+        all_lines.append(line)
+    
+    all_lines = list(filter(None, all_lines))
+    
+    print(all_lines)
+        
 
 #---------------------------------------------------------#
 #  CLI Options for User                                   #
@@ -52,12 +64,6 @@ def fileInput(file):
 
 #---------------------------------------------------------#
 #  Export files                                           #
-#---------------------------------------------------------#
-
-
-
-#---------------------------------------------------------#
-#  Define Ruskko built tags                               #
 #---------------------------------------------------------#
 
 
