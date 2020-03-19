@@ -1,10 +1,9 @@
 import sys, re
 
-output = "index.html" # index.html is default
 #---------------------------------------------------------#
 #  Export files                                           #
 #---------------------------------------------------------#
-def exportFile(file_contents):
+def exportFile(file_contents, output):
     export = open(output, "w")
     export.write("<!DOCTYPE html>\n") #begins export
     export.write("<html>\n")
@@ -15,19 +14,19 @@ def exportFile(file_contents):
 #---------------------------------------------------------#
 #  Define Ruskko built tags                               #
 #---------------------------------------------------------#
-def parser(file):
+def parser(file, output):
     # Remove comments
     for i in file:
         if (i.startswith('//')):
             file.remove(i)
     
-    exportFile(file)
+    exportFile(file, output)
 
 
 #---------------------------------------------------------#
 #  Reading the file                                       #
 #---------------------------------------------------------#
-def readFile():
+def readFile(output):
     file = arguments[0]
     print("File Input: ", file)
     print("File Output: ", output)
@@ -41,7 +40,7 @@ def readFile():
     
     all_lines = list(filter(None, all_lines))
     
-    parser(all_lines)
+    parser(all_lines, output)
         
 
 #---------------------------------------------------------#
@@ -61,14 +60,6 @@ def help():
     print("")
     exit()
 
-def outputName(name):
-    global output 
-    output = name + ".html"   
-
-def outputFile(new_file):
-    global output 
-    output = new_file
-
 def fileInput(file):
     if (arguments[0] == "-help"):
         help()
@@ -76,11 +67,15 @@ def fileInput(file):
         if (not arguments[0].endswith(".rsko")):
             incorrectFile(arguments[0])
         else:
-            readFile()
+            pass
 
 #---------------------------------------------------------#
 #  Get/Set arguments such as file and CLI for future use  #
 #---------------------------------------------------------#
+def setOutput(output_name):
+    output = output_name
+    readFile(output)
+
 def incorrectUsage(err):
     print("Error Detected: ", err, " - Incorrect command usage")
     print("Usage: ruskko <filename> [OPTIONS] [COMMAND]")
@@ -100,16 +95,15 @@ print("Arguments Seen: ", arguments)
 # Check Argument Lengths, and run code accordingly
 if (args_len == 1):
     fileInput(arguments[0])
+    setOutput("index.html")
 elif (args_len == 2):
     incorrectUsage("Unused Option")
 elif (args_len == 3):
     fileInput(arguments[0])
-    if (arguments[1] == "-o"):        
-        outputName(arguments[2])
-        readFile()
+    if (arguments[1] == "-o"):       
+        setOutput(arguments[2] + ".html")
     elif(arguments[1] == "-of"):
-        outputFile(arguments[2])
-        readFile()
+        setOutput(arguments[2])
 elif (args_len == 0):
     incorrectUsage("No File Specified")
 else:
