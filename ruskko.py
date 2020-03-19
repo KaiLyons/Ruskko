@@ -6,8 +6,11 @@ output = "index.html" # index.html is default
 #---------------------------------------------------------#
 def exportFile(file_contents):
     export = open(output, "w")
+    export.write("<!DOCTYPE html>\n") #begins export
+    export.write("<html>\n")
     for i in file_contents:
         export.write(i + "\n")
+    export.write("</html>\n")
 
 #---------------------------------------------------------#
 #  Define Ruskko built tags                               #
